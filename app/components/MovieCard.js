@@ -15,11 +15,9 @@ const MovieCard = ({ title, movie_id, poster_path, release_date, vote_average, u
       body: JSON.stringify({ movie_id, user_id: userID, title, poster_path, release_date, vote_average, overview })
     })
     .then(response => {
-      console.log(response);
       return response.json()
     })
     .then(json => {
-      console.log(json);
       fetchFavorites('movieFavorite', userID)
     })
   }
@@ -37,11 +35,9 @@ const MovieCard = ({ title, movie_id, poster_path, release_date, vote_average, u
       body: JSON.stringify({ user_id: userID, movie_id })
     })
     .then(response => {
-      console.log(response);
       return response.json()
     })
     .then(json => {
-      console.log(json);
       fetchFavorites(null, userID)
     })
   }
