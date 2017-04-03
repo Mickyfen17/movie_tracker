@@ -12,7 +12,7 @@ describe('movie reducer', () => {
     const movieState = movieReducer(undefined, {
       type: 'RECEIVED_MOVIES',
       movies
-    })
+    });
     const reducedMovies = [{"title": "Ironman", "year": 2014}, {"title": "Spiderman", "year": 2010}];
 
     expect(movieState).toEqual(reducedMovies);
@@ -21,9 +21,8 @@ describe('movie reducer', () => {
   it('should return to the default empty array when action is SIGN_OUT', () => {
     const movieState = rootReducer(undefined, {
       type: 'SIGN_OUT',
-    })
+    });
 
     expect(movieState.movies).toEqual([]);
   });
-
 });

@@ -26,7 +26,7 @@ describe('user reducer', () => {
   it('should return to the initialState when action is SIGN_OUT', () => {
     const userState = rootReducer(undefined, {
       type: 'SIGN_OUT',
-    })
+    });
 
     expect(userState.user).toEqual(initialState);
   });

@@ -40,7 +40,6 @@ export default class CreateUser extends Component {
       body: JSON.stringify({ email, password, name })
     })
     .then(response => {
-      console.log(response)
       if(response.status > 300) {
         this.setState({
           error: 'Email in use',

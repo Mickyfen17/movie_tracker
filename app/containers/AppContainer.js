@@ -1,7 +1,7 @@
-import { connect }     from 'react-redux';
+import { connect } from 'react-redux';
 
-import App             from '../components/App'
-import { fetchMovies, signOut, showFavorites } from '../actions/actions'
+import App from '../components/App';
+import { fetchMovies, signOut, showFavorites } from '../actions/actions';
 
 const mapStateToProps = (state) => {
   return state
@@ -15,5 +15,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 

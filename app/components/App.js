@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Route, Link }            from 'react-router-dom';
-
-import Home                 from './Home';
-import MovieDetails         from './MovieDetails';
-import Favorites            from './Favorites';
-import NavBar               from './NavBar';
-import LoginContainer       from '../containers/LoginContainer';
-import CreateUser  from './CreateUser';
+import { Route, Link } from 'react-router-dom';
+import Home from './Home';
+import MovieDetails from './MovieDetails';
+import Favorites from './Favorites';
+import NavBar from './NavBar';
+import LoginContainer from '../containers/LoginContainer';
+import CreateUser from './CreateUser';
 
 export default class App extends Component {
   constructor() {
@@ -19,7 +18,6 @@ export default class App extends Component {
   }
 
   fetchFavorites(button, userID) {
-    console.log('fetch', userID, button);
     if(!userID) {
       this.props.history.push('/login')
     }
@@ -53,6 +51,7 @@ export default class App extends Component {
             userID={ user.id }
             history={ history }
             fetchMovies={ fetchMovies }
+            favorites={ favorites }
           />
         </header>
 

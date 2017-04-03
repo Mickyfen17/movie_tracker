@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React from 'react';
 import MovieCard from './MovieCard';
 
 const Favorites = ({ userID, favorites, fetchFavorites, history }) => {
@@ -28,4 +27,4 @@ const Favorites = ({ userID, favorites, fetchFavorites, history }) => {
   )
 }
 
-export default Favorites
+export default Favorites;

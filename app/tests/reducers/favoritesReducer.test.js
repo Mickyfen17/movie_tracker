@@ -19,9 +19,8 @@ describe('favorites reducer', () => {
   it('should return to the default empty array when action is SIGN_OUT', () => {
     const movieState = rootReducer(undefined, {
       type: 'SIGN_OUT',
-    })
+    });
 
     expect(movieState.favorites).toEqual([]);
   });
-
-})
+});
