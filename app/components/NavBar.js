@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const NavBar = ({ signedIn, signOut, userID, history, fetchMovies, fetchFavorites }) => {
+const NavBar = ({ signedIn, signOut, userID, history, fetchMovies, fetchFavorites, favorites }) => {
 
   const login = () => {
     if(!signedIn) {
@@ -34,7 +34,7 @@ const NavBar = ({ signedIn, signOut, userID, history, fetchMovies, fetchFavorite
       <button
         className='nav-button'
         onClick={ () => fetchFavorites('navFavorites', userID) }>
-        Favorites
+        { `Favorites ${favorites.length}` }
       </button>
     </nav>
   )

@@ -53,34 +53,4 @@ describe('App', () => {
     expect(wrapper.find('h2').text()).toEqual('Welcome back, marissa');
   });
 
-// it('Should take in user props', () => {
-//   const wrapper = mount(
-//     <App
-//       user={user}
-//       fetchMovies={ () => {} }
-//     />
-//   );
-
-//   expect(wrapper.props().user).toEqual({
-//     id: 1,
-//     name: 'marissa',
-//     email: 'reinke.marissa@gmail.com',
-//     signedIn: true
-//     });
-//   });
-//
-
-// it('calls componentWillMount', () => {
-//     sinon.spy(App.prototype, 'componentWillMount');
-//     const wrapper = mount(
-//       <App
-//         user={user}
-//         fetchMovies={ () => {} }
-//         history={ browserHistory }
-//        />
-//     );
-//
-//     expect(App.prototype.componentWillMount.calledOnce).to.equal(true);
-//   });
-
 });

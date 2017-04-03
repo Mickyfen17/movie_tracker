@@ -65,7 +65,7 @@ export default class Login extends Component {
             onChange={ (e) => this.handleUserInput(e) }
           />
 
-        <button onClick={ (e) => this.login(e) } >Submit</button>
+        <button className="submit-btn" onClick={ (e) => this.login(e) } >Submit</button>
         { this.state.error !== '' && <h2>{this.state.error}</h2>}
 
         </form>

@@ -3,6 +3,7 @@
 @import url('./card.css');
 @import url('./header.css');
 @import url('./buttons.css');
+@import url('./max.css');
 
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
 
@@ -34,6 +35,13 @@ nav {
 nav a {
   color: white;
   margin-right: 10px;
+}
+
+h3 {
+  color: #fa5a5a;
+  text-transform: uppercase;
+  margin-top: 20px;
+  font-size: 20px;
 }
 
 #main h1 {
@@ -91,4 +99,35 @@ nav a {
 
 .film-reel {
   width: 40px;
+}
+
+@media only screen and (min-width: 550px)  {
+
+  .movie-wrapper {
+    flex-direction: row;
+  }
+
+  .movie-display {
+    position: relative;
+    width: 200px;
+    margin: 0 auto;
+  }
+
+  .login {
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .movie-info {
+    width: 80%;
+    margin-left: 10%;
+  }
+
+  .favorites-disp {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
 }

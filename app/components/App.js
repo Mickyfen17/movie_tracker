@@ -52,6 +52,7 @@ export default class App extends Component {
             userID={ user.id }
             history={ history }
             fetchMovies={ fetchMovies }
+            favorites={ favorites }
           />
         </header>
 

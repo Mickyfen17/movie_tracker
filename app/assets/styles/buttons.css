@@ -9,7 +9,7 @@
 .btn {
     border: 0;
     padding: 5px 15px;
-    color: white;
+    color: #fff;
     position: absolute;
     right: 0;
 }
@@ -29,4 +29,24 @@
 .btn.red:active {
   box-shadow: 0 0 #ff4c4b;
   background-color: #ff4c4b;
+}
+
+.submit-btn,
+.nav-button {
+  text-transform: uppercase;
+  color: #fa5a5a;
+  background-color: #fff;
+  padding: 10px;
+  font-weight: 700;
+  margin: 5px;
+}
+
+.submit-btn:hover {
+  background-color: #fa5a5a;
+  color: #fff;
+}
+
+.nav-button:hover {
+  background-color: #000;
+  color: #fff;
 }

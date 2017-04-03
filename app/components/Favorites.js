@@ -20,7 +20,9 @@ const Favorites = ({ userID, favorites, fetchFavorites, history }) => {
   return (
     <section>
       <h1>Favorites</h1>
-      { displayUserFavorites() }
+      <div className="favorites-disp">
+        { displayUserFavorites() }
+      </div>
     </section>
   )
 }

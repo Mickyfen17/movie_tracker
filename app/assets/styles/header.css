@@ -2,14 +2,3 @@
   font-weight: lighter;
   color: #fa5a5a;
 }
-
-.nav-button {
-  background-color: #fff;
-  padding: 5px;
-  margin: 5px;
-}
-
-.nav-button:hover {
-  background-color: #000;
-  color: #fff;
-}
