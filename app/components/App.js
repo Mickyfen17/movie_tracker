@@ -17,12 +17,18 @@ export default class App extends Component {
     this.props.fetchMovies()
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.user.signedIn !== nextProps.user.signedIn) {
+      this.fetchFavorites(null, nextProps.user.id)
+    }
+  }
+
   fetchFavorites(button, userID) {
     if(!userID) {
       this.props.history.push('/login')
     }
     else {
-      fetch(`http://localhost:3000/api/users/${userID}/favorites`)
+      fetch(`http://localhost:3001/api/users/${userID}/favorites`)
       .then(response => {
         return response.json()
       })
@@ -34,13 +40,13 @@ export default class App extends Component {
   }
 
   render() {
-    const { movies, user, signOut, favorites, history, fetchMovies } = this.props
+    const { movies, user, signOut, favorites, history, fetchMovies, addFavorite, removeFavorite } = this.props
     return (
       <div>
         <header>
           <Link to={`/`}>
             <h1><span className="mov-title">M</span>
-            <img className="film-reel" src="../assets/images/film-reel.svg"></img>
+            <img className="film-reel" src="images/film-reel.svg"></img>
             <span className="mov-title">vie</span> Watcher</h1>
           </Link>
 
@@ -64,6 +70,8 @@ export default class App extends Component {
             userID={ user.id }
             favorites={ favorites }
             fetchFavorites={ this.fetchFavorites }
+            addFavorite={ addFavorite }
+            removeFavorite={ removeFavorite }
             history={ history }
           />
         } />
@@ -80,13 +88,14 @@ export default class App extends Component {
 
         <Route exact path='/movie/:id' render={({match}) => {
             const movie = movies.find(movie => movie.id === parseInt(match.params.id))
-            return <MovieDetails { ...movie } history={ history }/>
+            return <MovieDetails { ...movie } history={ history } />
           }
         } />
         <Route exact path='/favorites' render={({match}) =>
             <Favorites
               userID={ user.id }
               favorites={ favorites }
+              removeFavorite={ removeFavorite }
               fetchFavorites={ this.fetchFavorites }
               history={ history }
             />

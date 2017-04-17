@@ -24,6 +24,7 @@ describe('App', () => {
       <App
         user={ {} }
         fetchMovies={ () => {} }
+        favorites={ [] }
       />
     );
 
@@ -41,6 +42,7 @@ describe('App', () => {
       <App
         user={ user }
         fetchMovies={ () => {} }
+        favorites={ [] }
       />
     );
     const buttonText = wrapper.find(NavBar)

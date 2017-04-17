@@ -10,7 +10,7 @@ import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 
 import AppContainer from './containers/AppContainer';
 import rootReducer from './reducers/index';
-import styles  from './assets/styles/main';
+import styles  from '../src/styles/main';
 
 const history = createHistory();
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();

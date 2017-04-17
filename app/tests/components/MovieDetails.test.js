@@ -22,7 +22,7 @@ describe('testing MovieDetails', () => {
     const wrapper = mount( <MovieDetails { ...mockMovie }/> )
 
     expect(wrapper.find(MovieDetails)).toHaveLength(1)
-    expect(wrapper.text()).toEqual('Splitoverview of movie7.81000Back')
+    expect(wrapper.text()).toEqual('SplitOverviewoverview of movieVoting Average7.8Vote Count1000Back')
   })
 
   it('should redirect back home on press of back button', () => {

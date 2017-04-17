@@ -17,7 +17,7 @@ const MovieDetails = ({ title, poster_path, overview, vote_average, vote_count, 
           <p>{ vote_count }</p>
       </div>
       <button
-        className='nav-button'
+        className='submit-btn'
         onClick={ () => history.push('/') }>
         Back
       </button>

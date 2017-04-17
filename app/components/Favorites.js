@@ -1,7 +1,7 @@
 import React from 'react';
 import MovieCard from './MovieCard';
 
-const Favorites = ({ userID, favorites, fetchFavorites, history }) => {
+const Favorites = ({ userID, favorites, fetchFavorites, history, removeFavorite }) => {
 
   const displayUserFavorites = () => {
     return favorites.map(movie =>
@@ -11,6 +11,7 @@ const Favorites = ({ userID, favorites, fetchFavorites, history }) => {
         { ...movie }
         userID={ userID }
         favorites={ favorites }
+        removeFavorite={ removeFavorite }
         fetchFavorites={ fetchFavorites }
         history={ history }
       />

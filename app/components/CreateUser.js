@@ -34,7 +34,7 @@ export default class CreateUser extends Component {
       })
       return
     }
-    fetch('http://localhost:3000/api/users/new', {
+    fetch('http://localhost:3001/api/users/new', {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({ email, password, name })
@@ -47,9 +47,12 @@ export default class CreateUser extends Component {
           password: '',
           name: ''
         });
-        throw Error('Invalid email');
+        throw Error('Email in use');
       }
       history.push('/login')
+    })
+    .catch(error => {
+      console.log('Email in use');
     })
   }
 
@@ -83,7 +86,7 @@ export default class CreateUser extends Component {
             onChange={ (e) => this.handleCreateUser(e) }
           />
 
-        <button onClick={ (e) => this.createUser(e) } >Create</button>
+        <button className="submit-btn" onClick={ (e) => this.createUser(e) } >Create</button>
 
         { this.state.error !== '' && <h2>{this.state.error}</h2>}
       </form>

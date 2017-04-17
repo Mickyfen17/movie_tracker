@@ -6,7 +6,7 @@ import NavBar from '../../components/NavBar';
 describe('testing NavBar', () => {
 
   it('should contain 3 buttons', () => {
-    const wrapper = shallow( <NavBar /> )
+    const wrapper = shallow( <NavBar favorites={ [] }/> )
 
     expect(wrapper.find('button')).toHaveLength(3)
   });
@@ -14,7 +14,7 @@ describe('testing NavBar', () => {
   it('should accept default props', () => {
     const wrapper = mount(
       <NavBar
-        signedIn={ true }
+favorites={ [] }        signedIn={ true }
         userID={ 12345 }
       /> )
 
@@ -24,7 +24,7 @@ describe('testing NavBar', () => {
 
   it('should redirect to login page on click', () => {
     spyOn(browserHistory, 'push');
-    const wrapper = mount( <NavBar history={ browserHistory }/> )
+    const wrapper = mount( <NavBar favorites={ [] }history={ browserHistory }/> )
     const loginBtn = wrapper.find('button').first()
     loginBtn.simulate('click');
 
@@ -33,7 +33,7 @@ describe('testing NavBar', () => {
 
   it('should redirect to create-user page on click', () => {
     spyOn(browserHistory, 'push');
-    const wrapper = mount( <NavBar history={ browserHistory }/> )
+    const wrapper = mount( <NavBar favorites={ [] }history={ browserHistory }/> )
     const createAccBtn = wrapper.childAt(1)
     createAccBtn.simulate('click');
 

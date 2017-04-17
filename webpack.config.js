@@ -8,12 +8,11 @@ module.exports = {
      './app/index.js'
    ],
    output: {
-     path: __dirname,
+     path: path.join(__dirname, 'src'),
      filename: 'bundle.js',
-     publicPath: '/'
+     publicPath: '/source-map'
    },
    module: {
-
      loaders: [{
        test: /.jsx?$/,
        loader: 'babel-loader',

@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('express-cors');
 var bodyParser = require('body-parser')
-const port = (process.env.PORT || 3000);
+const port = (process.env.PORT || 3001);
 const app = express();
 const users = require('./users');
 
@@ -25,12 +25,11 @@ if (process.env.NODE_ENV !== 'production') {
   }));
 }
 
-app.use('/assets', express.static(path.join(__dirname, '../app/assets')));
+app.use(express.static('src'));
 
 app.get('/', function (req, res) { res.sendFile(path.join(__dirname, '/../index.html')) });
 
 app.use('/api', users);
-app.get('/*', function (req, res) { res.sendFile(path.join(__dirname, '/../index.html')) });
 
 app.listen(port);
 

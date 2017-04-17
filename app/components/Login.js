@@ -21,7 +21,7 @@ export default class Login extends Component {
     e.preventDefault();
     const { password, email } = this.state;
     const { history, signIn } = this.props;
-    fetch('http://localhost:3000/api/users', {
+    fetch('http://localhost:3001/api/users', {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({ email, password })
@@ -33,13 +33,16 @@ export default class Login extends Component {
           email: '',
           password: ''
         });
-        throw Error('Invalid email or password');
+        throw Error('Email and password do not match');
+      } else {
+        history.push('/')
+        response.json().then(json => {
+          signIn(json.data)
+        });
       }
-      return response.json()
     })
-    .then(json => {
-      signIn(json.data)
-      history.push('/')
+    .catch(error => {
+      console.log('Email and password do not match');
     })
   }
 

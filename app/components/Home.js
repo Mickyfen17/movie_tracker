@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import MovieCard from './MovieCard';
 
-const Home = ({ movies, signedIn, userID, favorites, fetchFavorites, history }) => {
+const Home = ({ movies, signedIn, userID, favorites, fetchFavorites, history, addFavorite, removeFavorite }) => {
   const displayAllMovies = () => {
     return movies.map((movie) => {
       return (
@@ -15,6 +15,8 @@ const Home = ({ movies, signedIn, userID, favorites, fetchFavorites, history }) 
           userID={ userID }
           favorites={ favorites }
           fetchFavorites={ fetchFavorites }
+          addFavorite={ addFavorite }
+          removeFavorite={ removeFavorite }
           history={ history }
         />
       )

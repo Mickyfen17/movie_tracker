@@ -1,0 +1,58 @@
+<<<<<<< HEAD:app/assets/styles/forms.css
+=======
+ .log-title {
+   font-size: 20px;
+   color: white;
+   padding-bottom: 10px;
+ }
+
+.login {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+>>>>>>> caa46cde267859ecd67999203c22b9fa0eb8a11d:src/styles/forms.css
+input {
+  background: none;
+  border: none;
+  border-bottom: 1px solid white;
+  margin: 20px 0;
+  color: white;
+  font-size: 15px;
+  padding: 5px 30px;
+  background-repeat: no-repeat;
+  background-size: 25px;
+  background-position: left center;
+}
+
+h6 {
+  color: #fa5a5a;
+}
+
+ .log-title {
+   font-size: 20px;
+   color: white;
+   padding-bottom: 10px;
+ }
+
+.login {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.email {
+  background-image: url("../images/email.svg");
+}
+
+.name {
+  background-image: url("../images/user.svg");
+  background-size: 17px;
+}
+
+.password {
+  background-image: url("../images/key.svg");
+}
