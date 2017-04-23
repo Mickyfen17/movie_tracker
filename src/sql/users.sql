@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS users;
-CREATE DATABASE users;
+DROP DATABASE IF EXISTS mtusers;
+CREATE DATABASE mtusers;
 
-\c users;
+\c mtusers;
 
 CREATE TABLE users (
   id SERIAL NOT NULL PRIMARY KEY,
