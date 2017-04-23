@@ -28,7 +28,7 @@ export default class App extends Component {
       this.props.history.push('/login')
     }
     else {
-      fetch(`//localhost:3000/api/users/${userID}/favorites`)
+      fetch(`/api/users/${userID}/favorites`)
       .then(response => {
         return response.json()
       })

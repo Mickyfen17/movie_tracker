@@ -30105,7 +30105,7 @@
 	      if (!userID) {
 	        this.props.history.push('/login');
 	      } else {
-	        fetch('//localhost:3000/api/users/' + userID + '/favorites').then(function (response) {
+	        fetch('/api/users/' + userID + '/favorites').then(function (response) {
 	          return response.json();
 	        }).then(function (json) {
 	          _this2.props.showFavorites(json.data);
@@ -30687,7 +30687,7 @@
 	          history = _props.history,
 	          signIn = _props.signIn;
 	
-	      fetch('//localhost:3000/api/users', {
+	      fetch('/api/users', {
 	        method: "POST",
 	        headers: { "Content-Type": "application/json" },
 	        body: JSON.stringify({ email: email, password: password })
@@ -30816,7 +30816,7 @@
 	
 	var addFavorite = exports.addFavorite = function addFavorite(movie_id, userID, title, poster_path, release_date, vote_average, overview) {
 	  return function (dispatch) {
-	    fetch('//localhost:3000/api/users/favorites/new', {
+	    fetch('/api/users/favorites/new', {
 	      method: "POST",
 	      headers: { "Content-Type": "application/json" },
 	      body: JSON.stringify({ movie_id: movie_id, user_id: userID, title: title, poster_path: poster_path, release_date: release_date, vote_average: vote_average, overview: overview })
@@ -30826,7 +30826,7 @@
 	
 	var removeFavorite = exports.removeFavorite = function removeFavorite(movie_id, userID) {
 	  return function (dispatch) {
-	    fetch('//localhost:3000/api/users/' + userID + '/favorites/' + movie_id, {
+	    fetch('/api/users/' + userID + '/favorites/' + movie_id, {
 	      method: "DELETE",
 	      headers: { "Content-Type": "application/json" },
 	      body: JSON.stringify({ user_id: userID, movie_id: movie_id })
@@ -30911,7 +30911,7 @@
 	        });
 	        return;
 	      }
-	      fetch('//localhost:3000/api/users/new', {
+	      fetch('/api/users/new', {
 	        method: "POST",
 	        headers: { "Content-Type": "application/json" },
 	        body: JSON.stringify({ email: email, password: password, name: name })
