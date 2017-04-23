@@ -21,7 +21,7 @@ export default class Login extends Component {
     e.preventDefault();
     const { password, email } = this.state;
     const { history, signIn } = this.props;
-    fetch('http://localhost:3000/api/users', {
+    fetch('//localhost:3000/api/users', {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({ email, password })

@@ -6,7 +6,7 @@ const MovieDetails = ({ title, poster_path, overview, vote_average, vote_count, 
       <h2>{ title }</h2>
       <div className="movie-info">
         <img
-          src={`https://image.tmdb.org/t/p/w150${poster_path}`}
+          src={`//image.tmdb.org/t/p/w150${poster_path}`}
           alt={`movie poster of ${title}`}
         />
         <h3>Overview</h3>

@@ -28,7 +28,7 @@ const MovieCard = ({ title, movie_id, poster_path, release_date, vote_average, u
       <Link to={`/movie/${movie_id}`}>
         <img
           className="movie-poster"
-          src={`https://image.tmdb.org/t/p/w150${poster_path}`}
+          src={`//image.tmdb.org/t/p/w150${poster_path}`}
           alt={`movie poster of ${title}`}
         />
       </Link>
