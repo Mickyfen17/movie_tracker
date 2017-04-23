@@ -96,7 +96,7 @@ describe('testing CreateUser', () => {
   });
 
   it('should display error when email is already used for an account', async (done) => {
-    fetchMock.post('http://localhost:3001/api/users/new', {
+    fetchMock.post('http://localhost:3000/api/users/new', {
       status: 500,
       body: {}
     });

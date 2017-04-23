@@ -46,7 +46,7 @@ describe('testing Login', () => {
   })
 
   it('should display error when login fails', async (done) => {
-    fetchMock.post('http://localhost:3001/api/users', {
+    fetchMock.post('http://localhost:3000/api/users', {
       status: 500,
       body: {}
     });
@@ -78,7 +78,7 @@ describe('testing Login', () => {
 
   it('should redirect to dashboard on successful login', async (done) => {
     spyOn(browserHistory, 'push');
-    fetchMock.post('http://localhost:3001/api/users', {
+    fetchMock.post('http://localhost:3000/api/users', {
       status: 200,
       body: mockUser
     });

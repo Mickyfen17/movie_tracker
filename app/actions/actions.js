@@ -40,7 +40,7 @@ export const fetchMovies = () => {
 
 export const addFavorite = (movie_id, userID, title, poster_path, release_date, vote_average, overview) => {
   return function(dispatch) {
-    fetch('http://localhost:3001/api/users/favorites/new', {
+    fetch('http://localhost:3000/api/users/favorites/new', {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({ movie_id, user_id: userID, title, poster_path, release_date, vote_average, overview })
@@ -50,7 +50,7 @@ export const addFavorite = (movie_id, userID, title, poster_path, release_date, 
 
 export const removeFavorite = (movie_id, userID) => {
   return function(dispatch) {
-    fetch(`http://localhost:3001/api/users/${userID}/favorites/${movie_id}`, {
+    fetch(`http://localhost:3000/api/users/${userID}/favorites/${movie_id}`, {
       method: "DELETE",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({ user_id: userID, movie_id })

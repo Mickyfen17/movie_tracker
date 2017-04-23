@@ -1,9 +1,8 @@
-// const Server = require('./server');
 const path = require('path');
 const express = require('express');
 const cors = require('express-cors');
 var bodyParser = require('body-parser')
-const port = (process.env.PORT || 3001);
+const port = (process.env.PORT || 3000);
 const app = express();
 const users = require('./users');
 

@@ -34,7 +34,7 @@ export default class CreateUser extends Component {
       })
       return
     }
-    fetch('http://localhost:3001/api/users/new', {
+    fetch('http://localhost:3000/api/users/new', {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({ email, password, name })
