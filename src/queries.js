@@ -6,7 +6,7 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://localhost:5432/users';
+var connectionString = 'postgres://localhost:5432/mtusers';
 var db = pgp(connectionString);
 
 // add query functions
@@ -84,14 +84,11 @@ function deleteFavorite(req, res, next) {
   })
 }
 
-
-
-
 module.exports = {
-  getAllUsers: getAllUsers,
-  signIn: signIn,
-  createUser: createUser,
-  getAllFavorites: getAllFavorites,
-  addFavorite: addFavorite,
-  deleteFavorite: deleteFavorite
+  getAllUsers,
+  signIn,
+  createUser,
+  getAllFavorites,
+  addFavorite,
+  deleteFavorite
 };

@@ -4659,7 +4659,7 @@
 	};
 	
 	/* eslint-disable max-len */
-	var ATTRIBUTE_NAME_START_CHAR = ':A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD';
+	var ATTRIBUTE_NAME_START_CHAR = ':A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3000-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD';
 	/* eslint-enable max-len */
 	
 	/**
@@ -30105,7 +30105,7 @@
 	      if (!userID) {
 	        this.props.history.push('/login');
 	      } else {
-	        fetch('http://localhost:3001/api/users/' + userID + '/favorites').then(function (response) {
+	        fetch('http://localhost:3000/api/users/' + userID + '/favorites').then(function (response) {
 	          return response.json();
 	        }).then(function (json) {
 	          _this2.props.showFavorites(json.data);
@@ -30687,7 +30687,7 @@
 	          history = _props.history,
 	          signIn = _props.signIn;
 	
-	      fetch('http://localhost:3001/api/users', {
+	      fetch('http://localhost:3000/api/users', {
 	        method: "POST",
 	        headers: { "Content-Type": "application/json" },
 	        body: JSON.stringify({ email: email, password: password })
@@ -30816,7 +30816,7 @@
 	
 	var addFavorite = exports.addFavorite = function addFavorite(movie_id, userID, title, poster_path, release_date, vote_average, overview) {
 	  return function (dispatch) {
-	    fetch('http://localhost:3001/api/users/favorites/new', {
+	    fetch('http://localhost:3000/api/users/favorites/new', {
 	      method: "POST",
 	      headers: { "Content-Type": "application/json" },
 	      body: JSON.stringify({ movie_id: movie_id, user_id: userID, title: title, poster_path: poster_path, release_date: release_date, vote_average: vote_average, overview: overview })
@@ -30826,7 +30826,7 @@
 	
 	var removeFavorite = exports.removeFavorite = function removeFavorite(movie_id, userID) {
 	  return function (dispatch) {
-	    fetch('http://localhost:3001/api/users/' + userID + '/favorites/' + movie_id, {
+	    fetch('http://localhost:3000/api/users/' + userID + '/favorites/' + movie_id, {
 	      method: "DELETE",
 	      headers: { "Content-Type": "application/json" },
 	      body: JSON.stringify({ user_id: userID, movie_id: movie_id })
@@ -30911,7 +30911,7 @@
 	        });
 	        return;
 	      }
-	      fetch('http://localhost:3001/api/users/new', {
+	      fetch('http://localhost:3000/api/users/new', {
 	        method: "POST",
 	        headers: { "Content-Type": "application/json" },
 	        body: JSON.stringify({ email: email, password: password, name: name })
