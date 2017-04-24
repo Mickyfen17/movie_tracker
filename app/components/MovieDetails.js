@@ -10,11 +10,11 @@ const MovieDetails = ({ title, poster_path, overview, vote_average, vote_count, 
           alt={`movie poster of ${title}`}
         />
         <h3>Overview</h3>
-          <p>{ overview }</p>
+        <p>{ overview }</p>
         <h3>Voting Average</h3>
-          <p>{ vote_average }</p>
+        <p>{ vote_average }</p>
         <h3>Vote Count</h3>
-          <p>{ vote_count }</p>
+        <p>{ vote_count }</p>
       </div>
       <button
         className='submit-btn'

@@ -40,4 +40,3 @@ const MovieCard = ({ title, movie_id, poster_path, release_date, vote_average, u
 }
 
 export default MovieCard;
-

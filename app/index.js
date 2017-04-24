@@ -25,5 +25,4 @@ const router = (
   </Provider>
 );
 
-
 ReactDOM.render(router, document.getElementById('main'));

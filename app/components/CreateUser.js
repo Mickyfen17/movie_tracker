@@ -85,12 +85,10 @@ export default class CreateUser extends Component {
             value={this.state.password}
             onChange={ (e) => this.handleCreateUser(e) }
           />
-
-        <button className="submit-btn" onClick={ (e) => this.createUser(e) } >Create</button>
-
-        { this.state.error !== '' && <h2>{this.state.error}</h2>}
-      </form>
-    </div>
+          <button className="submit-btn" onClick={ (e) => this.createUser(e) } >Create</button>
+          { this.state.error !== '' && <h2>{this.state.error}</h2>}
+        </form>
+      </div>
     );
   }
 }

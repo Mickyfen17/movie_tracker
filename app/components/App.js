@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
+
 import Home from './Home';
 import MovieDetails from './MovieDetails';
 import Favorites from './Favorites';
 import NavBar from './NavBar';
-import LoginContainer from '../containers/LoginContainer';
 import CreateUser from './CreateUser';
+import LoginContainer from '../containers/LoginContainer';
 
 export default class App extends Component {
   constructor() {
@@ -49,7 +50,6 @@ export default class App extends Component {
             <img className="film-reel" src="images/film-reel.svg"></img>
             <span className="mov-title">vie</span> Watcher</h1>
           </Link>
-
           <NavBar
             signedIn={ user.signedIn }
             signOut={ signOut }
@@ -60,9 +60,7 @@ export default class App extends Component {
             favorites={ favorites }
           />
         </header>
-
         { user.signedIn && <h2>Welcome back, {user.name}</h2> }
-
         <Route exact path="/" render={({match}) =>
           <Home
             movies={ movies }
@@ -75,17 +73,14 @@ export default class App extends Component {
             history={ history }
           />
         } />
-
         <Route
           path='/login'
           component={ LoginContainer }
         />
-
         <Route
           path='/create-user'
           component={ CreateUser }
         />
-
         <Route exact path='/movie/:id' render={({match}) => {
             const movie = movies.find(movie => movie.id === parseInt(match.params.id))
             return <MovieDetails { ...movie } history={ history } />

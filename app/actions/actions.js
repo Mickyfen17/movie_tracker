@@ -57,7 +57,3 @@ export const removeFavorite = (movie_id, userID) => {
     })
   }
 }
-
-
-
-

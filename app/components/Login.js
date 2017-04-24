@@ -36,7 +36,8 @@ export default class Login extends Component {
         throw Error('Email and password do not match');
       } else {
         history.push('/')
-        response.json().then(json => {
+        return response.json()
+        .then(json => {
           signIn(json.data)
         });
       }
@@ -67,10 +68,8 @@ export default class Login extends Component {
             value={this.state.password}
             onChange={ (e) => this.handleUserInput(e) }
           />
-
-        <button className="submit-btn" onClick={ (e) => this.login(e) } >Submit</button>
-        { this.state.error !== '' && <h2>{this.state.error}</h2>}
-
+          <button className="submit-btn" onClick={ (e) => this.login(e) } >Submit</button>
+          { this.state.error !== '' && <h2>{this.state.error}</h2> }
         </form>
       </div>
     );
