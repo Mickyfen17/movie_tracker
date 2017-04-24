@@ -29991,7 +29991,7 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _actions = __webpack_require__(290);
+	var _actions = __webpack_require__(291);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -30057,13 +30057,13 @@
 	
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 	
-	var _LoginContainer = __webpack_require__(288);
-	
-	var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
-	
-	var _CreateUser = __webpack_require__(291);
+	var _CreateUser = __webpack_require__(288);
 	
 	var _CreateUser2 = _interopRequireDefault(_CreateUser);
+	
+	var _LoginContainer = __webpack_require__(289);
+	
+	var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -30597,253 +30597,6 @@
 	  value: true
 	});
 	
-	var _reactRedux = __webpack_require__(223);
-	
-	var _Login = __webpack_require__(289);
-	
-	var _Login2 = _interopRequireDefault(_Login);
-	
-	var _actions = __webpack_require__(290);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    user: state.user
-	  };
-	};
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    signIn: function signIn(user) {
-	      return dispatch((0, _actions.signIn)(user));
-	    }
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Login2.default);
-
-/***/ },
-/* 289 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(2);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Login = function (_Component) {
-	  _inherits(Login, _Component);
-	
-	  function Login() {
-	    _classCallCheck(this, Login);
-	
-	    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this));
-	
-	    _this.state = {
-	      email: '',
-	      password: '',
-	      error: ''
-	    };
-	    return _this;
-	  }
-	
-	  _createClass(Login, [{
-	    key: 'handleUserInput',
-	    value: function handleUserInput(e) {
-	      var _e$target = e.target,
-	          name = _e$target.name,
-	          value = _e$target.value;
-	
-	      this.setState(_defineProperty({}, name, value));
-	    }
-	  }, {
-	    key: 'login',
-	    value: function login(e) {
-	      var _this2 = this;
-	
-	      e.preventDefault();
-	      var _state = this.state,
-	          password = _state.password,
-	          email = _state.email;
-	      var _props = this.props,
-	          history = _props.history,
-	          signIn = _props.signIn;
-	
-	      fetch('/api/users', {
-	        method: "POST",
-	        headers: { "Content-Type": "application/json" },
-	        body: JSON.stringify({ email: email, password: password })
-	      }).then(function (response) {
-	        if (response.status > 300) {
-	          _this2.setState({
-	            error: 'Email and password do not match',
-	            email: '',
-	            password: ''
-	          });
-	          throw Error('Email and password do not match');
-	        } else {
-	          history.push('/');
-	          response.json().then(function (json) {
-	            signIn(json.data);
-	          });
-	        }
-	      }).catch(function (error) {
-	        console.log('Email and password do not match');
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this3 = this;
-	
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'h2',
-	          { className: 'log-title' },
-	          'Login Page'
-	        ),
-	        _react2.default.createElement(
-	          'form',
-	          { className: 'login' },
-	          _react2.default.createElement('input', {
-	            className: 'email',
-	            type: 'text',
-	            placeholder: 'E-Mail',
-	            name: 'email',
-	            value: this.state.email,
-	            onChange: function onChange(e) {
-	              return _this3.handleUserInput(e);
-	            }
-	          }),
-	          _react2.default.createElement('input', {
-	            className: 'password',
-	            type: 'password',
-	            placeholder: 'Password',
-	            name: 'password',
-	            value: this.state.password,
-	            onChange: function onChange(e) {
-	              return _this3.handleUserInput(e);
-	            }
-	          }),
-	          _react2.default.createElement(
-	            'button',
-	            { className: 'submit-btn', onClick: function onClick(e) {
-	                return _this3.login(e);
-	              } },
-	            'Submit'
-	          ),
-	          this.state.error !== '' && _react2.default.createElement(
-	            'h2',
-	            null,
-	            this.state.error
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return Login;
-	}(_react.Component);
-	
-	exports.default = Login;
-
-/***/ },
-/* 290 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var receivedMovies = function receivedMovies(movies) {
-	  return {
-	    type: 'RECEIVED_MOVIES',
-	    movies: movies
-	  };
-	};
-	
-	var signIn = exports.signIn = function signIn(user) {
-	  return {
-	    type: 'SIGN_IN',
-	    user: user
-	  };
-	};
-	
-	var signOut = exports.signOut = function signOut() {
-	  return {
-	    type: 'SIGN_OUT'
-	  };
-	};
-	
-	var showFavorites = exports.showFavorites = function showFavorites(favorites) {
-	  return {
-	    type: 'SHOW_FAVORITES',
-	    favorites: favorites
-	  };
-	};
-	
-	// API CALLS
-	var fetchMovies = exports.fetchMovies = function fetchMovies() {
-	  return function (dispatch) {
-	    fetch('//api.themoviedb.org/3/discover/movie?api_key=f61c7abf8110a0ea5bac29dd36a2acab&language=en-US&sort_by=popularity.desc&certification_country=US&include_adult=false&include_video=false&page=1&primary_release_date.gte=2016-09-01&primary_release_date.lte=2017-04-01&vote_count.gte=100&vote_average.gte=6').then(function (response) {
-	      return response.json();
-	    }).then(function (json) {
-	      return dispatch(receivedMovies(json));
-	    });
-	  };
-	};
-	
-	var addFavorite = exports.addFavorite = function addFavorite(movie_id, userID, title, poster_path, release_date, vote_average, overview) {
-	  return function (dispatch) {
-	    fetch('/api/users/favorites/new', {
-	      method: "POST",
-	      headers: { "Content-Type": "application/json" },
-	      body: JSON.stringify({ movie_id: movie_id, user_id: userID, title: title, poster_path: poster_path, release_date: release_date, vote_average: vote_average, overview: overview })
-	    });
-	  };
-	};
-	
-	var removeFavorite = exports.removeFavorite = function removeFavorite(movie_id, userID) {
-	  return function (dispatch) {
-	    fetch('/api/users/' + userID + '/favorites/' + movie_id, {
-	      method: "DELETE",
-	      headers: { "Content-Type": "application/json" },
-	      body: JSON.stringify({ user_id: userID, movie_id: movie_id })
-	    });
-	  };
-	};
-
-/***/ },
-/* 291 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(2);
@@ -30997,6 +30750,253 @@
 	}(_react.Component);
 	
 	exports.default = CreateUser;
+
+/***/ },
+/* 289 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(223);
+	
+	var _Login = __webpack_require__(290);
+	
+	var _Login2 = _interopRequireDefault(_Login);
+	
+	var _actions = __webpack_require__(291);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    user: state.user
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    signIn: function signIn(user) {
+	      return dispatch((0, _actions.signIn)(user));
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Login2.default);
+
+/***/ },
+/* 290 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Login = function (_Component) {
+	  _inherits(Login, _Component);
+	
+	  function Login() {
+	    _classCallCheck(this, Login);
+	
+	    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this));
+	
+	    _this.state = {
+	      email: '',
+	      password: '',
+	      error: ''
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(Login, [{
+	    key: 'handleUserInput',
+	    value: function handleUserInput(e) {
+	      var _e$target = e.target,
+	          name = _e$target.name,
+	          value = _e$target.value;
+	
+	      this.setState(_defineProperty({}, name, value));
+	    }
+	  }, {
+	    key: 'login',
+	    value: function login(e) {
+	      var _this2 = this;
+	
+	      e.preventDefault();
+	      var _state = this.state,
+	          password = _state.password,
+	          email = _state.email;
+	      var _props = this.props,
+	          history = _props.history,
+	          signIn = _props.signIn;
+	
+	      fetch('/api/users', {
+	        method: "POST",
+	        headers: { "Content-Type": "application/json" },
+	        body: JSON.stringify({ email: email, password: password })
+	      }).then(function (response) {
+	        if (response.status > 300) {
+	          _this2.setState({
+	            error: 'Email and password do not match',
+	            email: '',
+	            password: ''
+	          });
+	          throw Error('Email and password do not match');
+	        } else {
+	          history.push('/');
+	          return response.json().then(function (json) {
+	            signIn(json.data);
+	          });
+	        }
+	      }).catch(function (error) {
+	        console.log('Email and password do not match');
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this3 = this;
+	
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h2',
+	          { className: 'log-title' },
+	          'Login Page'
+	        ),
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'login' },
+	          _react2.default.createElement('input', {
+	            className: 'email',
+	            type: 'text',
+	            placeholder: 'E-Mail',
+	            name: 'email',
+	            value: this.state.email,
+	            onChange: function onChange(e) {
+	              return _this3.handleUserInput(e);
+	            }
+	          }),
+	          _react2.default.createElement('input', {
+	            className: 'password',
+	            type: 'password',
+	            placeholder: 'Password',
+	            name: 'password',
+	            value: this.state.password,
+	            onChange: function onChange(e) {
+	              return _this3.handleUserInput(e);
+	            }
+	          }),
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'submit-btn', onClick: function onClick(e) {
+	                return _this3.login(e);
+	              } },
+	            'Submit'
+	          ),
+	          this.state.error !== '' && _react2.default.createElement(
+	            'h2',
+	            null,
+	            this.state.error
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Login;
+	}(_react.Component);
+	
+	exports.default = Login;
+
+/***/ },
+/* 291 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var receivedMovies = function receivedMovies(movies) {
+	  return {
+	    type: 'RECEIVED_MOVIES',
+	    movies: movies
+	  };
+	};
+	
+	var signIn = exports.signIn = function signIn(user) {
+	  return {
+	    type: 'SIGN_IN',
+	    user: user
+	  };
+	};
+	
+	var signOut = exports.signOut = function signOut() {
+	  return {
+	    type: 'SIGN_OUT'
+	  };
+	};
+	
+	var showFavorites = exports.showFavorites = function showFavorites(favorites) {
+	  return {
+	    type: 'SHOW_FAVORITES',
+	    favorites: favorites
+	  };
+	};
+	
+	// API CALLS
+	var fetchMovies = exports.fetchMovies = function fetchMovies() {
+	  return function (dispatch) {
+	    fetch('//api.themoviedb.org/3/discover/movie?api_key=f61c7abf8110a0ea5bac29dd36a2acab&language=en-US&sort_by=popularity.desc&certification_country=US&include_adult=false&include_video=false&page=1&primary_release_date.gte=2016-09-01&primary_release_date.lte=2017-04-01&vote_count.gte=100&vote_average.gte=6').then(function (response) {
+	      return response.json();
+	    }).then(function (json) {
+	      return dispatch(receivedMovies(json));
+	    });
+	  };
+	};
+	
+	var addFavorite = exports.addFavorite = function addFavorite(movie_id, userID, title, poster_path, release_date, vote_average, overview) {
+	  return function (dispatch) {
+	    fetch('/api/users/favorites/new', {
+	      method: "POST",
+	      headers: { "Content-Type": "application/json" },
+	      body: JSON.stringify({ movie_id: movie_id, user_id: userID, title: title, poster_path: poster_path, release_date: release_date, vote_average: vote_average, overview: overview })
+	    });
+	  };
+	};
+	
+	var removeFavorite = exports.removeFavorite = function removeFavorite(movie_id, userID) {
+	  return function (dispatch) {
+	    fetch('/api/users/' + userID + '/favorites/' + movie_id, {
+	      method: "DELETE",
+	      headers: { "Content-Type": "application/json" },
+	      body: JSON.stringify({ user_id: userID, movie_id: movie_id })
+	    });
+	  };
+	};
 
 /***/ },
 /* 292 */
