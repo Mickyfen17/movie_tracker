@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { shallow, mount } from 'enzyme';
-import CreateUser from '../../components/CreateUser';
 import fetchMock from 'fetch-mock';
 
-
+import CreateUser from '../../app/components/CreateUser';
 
 describe('testing CreateUser', () => {
 

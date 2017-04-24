@@ -1,5 +1,5 @@
-import favoritesReducer from '../../reducers/favoritesReducer';
-import rootReducer from '../../reducers/index';
+import favoritesReducer from '../../app/reducers/favoritesReducer';
+import rootReducer from '../../app/reducers/index';
 
 describe('favorites reducer', () => {
 

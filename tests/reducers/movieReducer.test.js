@@ -1,5 +1,5 @@
-import movieReducer from '../../reducers/movieReducer';
-import rootReducer from '../../reducers/index';
+import movieReducer from '../../app/reducers/movieReducer';
+import rootReducer from '../../app/reducers/index';
 
 describe('movie reducer', () => {
 

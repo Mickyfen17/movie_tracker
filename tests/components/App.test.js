@@ -5,10 +5,10 @@ import { mount, shallow } from 'enzyme';
 import fetchMock from 'fetch-mock';
 import sinon from 'sinon';
 
-import App from '../../components/App';
-import Home from '../../components/Home';
-import NavBar from '../../components/NavBar';
-import CreateUser from '../../components/CreateUser';
+import App from '../../app/components/App';
+import Home from '../../app/components/Home';
+import NavBar from '../../app/components/NavBar';
+import CreateUser from '../../app/components/CreateUser';
 
 describe('App', () => {
 

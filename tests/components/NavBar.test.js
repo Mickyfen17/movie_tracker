@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { browserHistory } from 'react-router';
-import NavBar from '../../components/NavBar';
+
+import NavBar from '../../app/components/NavBar';
 
 describe('testing NavBar', () => {
 

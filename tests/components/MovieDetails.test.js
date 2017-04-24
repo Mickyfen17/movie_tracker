@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { browserHistory } from 'react-router';
-import MovieDetails from '../../components/MovieDetails';
+
+import MovieDetails from '../../app/components/MovieDetails';
 
 describe('testing MovieDetails', () => {
   const mockMovie = {

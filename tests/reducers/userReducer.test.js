@@ -1,5 +1,5 @@
-import userReducer from '../../reducers/userReducer';
-import rootReducer from '../../reducers/index';
+import userReducer from '../../app/reducers/userReducer';
+import rootReducer from '../../app/reducers/index';
 
 const initialState = {
   name: null,

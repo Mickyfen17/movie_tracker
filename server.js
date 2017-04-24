@@ -4,7 +4,7 @@ const cors = require('express-cors');
 var bodyParser = require('body-parser')
 const port = (process.env.PORT || 3000);
 const app = express();
-const users = require('./users');
+const users = require('./routes/users');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -14,7 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
-  const config = require('../webpack.config.js');
+  const config = require('./webpack.config.js');
   const compiler = webpack(config);
 
   app.use(webpackHotMiddleware(compiler));
@@ -24,15 +24,15 @@ if (process.env.NODE_ENV !== 'production') {
   }));
 }
 
-app.use(express.static('src'));
+app.use(express.static('app'));
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, './index.html')) });
+  res.sendFile(path.join(__dirname, './app/index.html')) });
 
 app.use('/api', users);
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, './index.html'))
+  res.sendFile(path.join(__dirname, './app/index.html'))
 });
 
 app.listen(port);

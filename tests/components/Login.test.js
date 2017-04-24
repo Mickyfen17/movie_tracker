@@ -2,7 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { browserHistory } from 'react-router';
 import fetchMock from 'fetch-mock';
-import Login from '../../components/Login';
+
+import Login from '../../app/components/Login';
 
 
 describe('testing Login', () => {

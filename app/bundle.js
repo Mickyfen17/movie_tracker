@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/source-map";
+/******/ 	__webpack_require__.p = "/app/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -30145,7 +30145,7 @@
 	                { className: 'mov-title' },
 	                'M'
 	              ),
-	              _react2.default.createElement('img', { className: 'film-reel', src: 'images/film-reel.svg' }),
+	              _react2.default.createElement('img', { className: 'film-reel', src: './images/film-reel.svg' }),
 	              _react2.default.createElement(
 	                'span',
 	                { className: 'mov-title' },

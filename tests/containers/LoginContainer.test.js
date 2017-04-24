@@ -3,8 +3,8 @@ import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 
-import LoginContainer from '../../containers/LoginContainer';
-import Login from '../../components/Login';
+import LoginContainer from '../../app/containers/LoginContainer';
+import Login from '../../app/components/Login';
 
 const mockStore = configureMockStore()({
   user: {

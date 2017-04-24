@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { browserHistory } from 'react-router';
-import MovieCard from '../../components/MovieCard';
+
+import MovieCard from '../../app/components/MovieCard';
 
 describe('testing MovieCard', () => {
   const mockMovie = {

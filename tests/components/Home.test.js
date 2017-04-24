@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { browserHistory } from 'react-router';
-import Home from '../../components/Home';
+
+import Home from '../../app/components/Home';
 
 describe('testing Home', () => {
 
