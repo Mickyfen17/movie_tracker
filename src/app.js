@@ -26,9 +26,14 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(express.static('src'));
 
-app.get('/', function (req, res) { res.sendFile(path.join(__dirname, '/../index.html')) });
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, './index.html')) });
 
 app.use('/api', users);
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, './index.html'))
+});
 
 app.listen(port);
 
