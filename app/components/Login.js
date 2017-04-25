@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import 'whatwg-fetch'; 
 
 export default class Login extends Component {
   constructor() {

@@ -1,3 +1,5 @@
+import 'whatwg-fetch';
+
 const receivedMovies = (movies) => {
   return {
     type: 'RECEIVED_MOVIES',

@@ -81,11 +81,11 @@
 	
 	var _AppContainer2 = _interopRequireDefault(_AppContainer);
 	
-	var _index = __webpack_require__(286);
+	var _index = __webpack_require__(287);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _main = __webpack_require__(290);
+	var _main = __webpack_require__(291);
 	
 	var _main2 = _interopRequireDefault(_main);
 	
@@ -29095,7 +29095,7 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _actions = __webpack_require__(285);
+	var _actions = __webpack_require__(286);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29145,27 +29145,29 @@
 	
 	var _reactRouterDom = __webpack_require__(189);
 	
-	var _Home = __webpack_require__(277);
+	__webpack_require__(277);
+	
+	var _Home = __webpack_require__(278);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
-	var _MovieDetails = __webpack_require__(279);
+	var _MovieDetails = __webpack_require__(280);
 	
 	var _MovieDetails2 = _interopRequireDefault(_MovieDetails);
 	
-	var _Favorites = __webpack_require__(280);
+	var _Favorites = __webpack_require__(281);
 	
 	var _Favorites2 = _interopRequireDefault(_Favorites);
 	
-	var _NavBar = __webpack_require__(281);
+	var _NavBar = __webpack_require__(282);
 	
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 	
-	var _CreateUser = __webpack_require__(282);
+	var _CreateUser = __webpack_require__(283);
 	
 	var _CreateUser2 = _interopRequireDefault(_CreateUser);
 	
-	var _LoginContainer = __webpack_require__(283);
+	var _LoginContainer = __webpack_require__(284);
 	
 	var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
 	
@@ -29324,6 +29326,473 @@
 
 /***/ },
 /* 277 */
+/***/ function(module, exports) {
+
+	(function(self) {
+	  'use strict';
+	
+	  if (self.fetch) {
+	    return
+	  }
+	
+	  var support = {
+	    searchParams: 'URLSearchParams' in self,
+	    iterable: 'Symbol' in self && 'iterator' in Symbol,
+	    blob: 'FileReader' in self && 'Blob' in self && (function() {
+	      try {
+	        new Blob()
+	        return true
+	      } catch(e) {
+	        return false
+	      }
+	    })(),
+	    formData: 'FormData' in self,
+	    arrayBuffer: 'ArrayBuffer' in self
+	  }
+	
+	  if (support.arrayBuffer) {
+	    var viewClasses = [
+	      '[object Int8Array]',
+	      '[object Uint8Array]',
+	      '[object Uint8ClampedArray]',
+	      '[object Int16Array]',
+	      '[object Uint16Array]',
+	      '[object Int32Array]',
+	      '[object Uint32Array]',
+	      '[object Float32Array]',
+	      '[object Float64Array]'
+	    ]
+	
+	    var isDataView = function(obj) {
+	      return obj && DataView.prototype.isPrototypeOf(obj)
+	    }
+	
+	    var isArrayBufferView = ArrayBuffer.isView || function(obj) {
+	      return obj && viewClasses.indexOf(Object.prototype.toString.call(obj)) > -1
+	    }
+	  }
+	
+	  function normalizeName(name) {
+	    if (typeof name !== 'string') {
+	      name = String(name)
+	    }
+	    if (/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(name)) {
+	      throw new TypeError('Invalid character in header field name')
+	    }
+	    return name.toLowerCase()
+	  }
+	
+	  function normalizeValue(value) {
+	    if (typeof value !== 'string') {
+	      value = String(value)
+	    }
+	    return value
+	  }
+	
+	  // Build a destructive iterator for the value list
+	  function iteratorFor(items) {
+	    var iterator = {
+	      next: function() {
+	        var value = items.shift()
+	        return {done: value === undefined, value: value}
+	      }
+	    }
+	
+	    if (support.iterable) {
+	      iterator[Symbol.iterator] = function() {
+	        return iterator
+	      }
+	    }
+	
+	    return iterator
+	  }
+	
+	  function Headers(headers) {
+	    this.map = {}
+	
+	    if (headers instanceof Headers) {
+	      headers.forEach(function(value, name) {
+	        this.append(name, value)
+	      }, this)
+	    } else if (Array.isArray(headers)) {
+	      headers.forEach(function(header) {
+	        this.append(header[0], header[1])
+	      }, this)
+	    } else if (headers) {
+	      Object.getOwnPropertyNames(headers).forEach(function(name) {
+	        this.append(name, headers[name])
+	      }, this)
+	    }
+	  }
+	
+	  Headers.prototype.append = function(name, value) {
+	    name = normalizeName(name)
+	    value = normalizeValue(value)
+	    var oldValue = this.map[name]
+	    this.map[name] = oldValue ? oldValue+','+value : value
+	  }
+	
+	  Headers.prototype['delete'] = function(name) {
+	    delete this.map[normalizeName(name)]
+	  }
+	
+	  Headers.prototype.get = function(name) {
+	    name = normalizeName(name)
+	    return this.has(name) ? this.map[name] : null
+	  }
+	
+	  Headers.prototype.has = function(name) {
+	    return this.map.hasOwnProperty(normalizeName(name))
+	  }
+	
+	  Headers.prototype.set = function(name, value) {
+	    this.map[normalizeName(name)] = normalizeValue(value)
+	  }
+	
+	  Headers.prototype.forEach = function(callback, thisArg) {
+	    for (var name in this.map) {
+	      if (this.map.hasOwnProperty(name)) {
+	        callback.call(thisArg, this.map[name], name, this)
+	      }
+	    }
+	  }
+	
+	  Headers.prototype.keys = function() {
+	    var items = []
+	    this.forEach(function(value, name) { items.push(name) })
+	    return iteratorFor(items)
+	  }
+	
+	  Headers.prototype.values = function() {
+	    var items = []
+	    this.forEach(function(value) { items.push(value) })
+	    return iteratorFor(items)
+	  }
+	
+	  Headers.prototype.entries = function() {
+	    var items = []
+	    this.forEach(function(value, name) { items.push([name, value]) })
+	    return iteratorFor(items)
+	  }
+	
+	  if (support.iterable) {
+	    Headers.prototype[Symbol.iterator] = Headers.prototype.entries
+	  }
+	
+	  function consumed(body) {
+	    if (body.bodyUsed) {
+	      return Promise.reject(new TypeError('Already read'))
+	    }
+	    body.bodyUsed = true
+	  }
+	
+	  function fileReaderReady(reader) {
+	    return new Promise(function(resolve, reject) {
+	      reader.onload = function() {
+	        resolve(reader.result)
+	      }
+	      reader.onerror = function() {
+	        reject(reader.error)
+	      }
+	    })
+	  }
+	
+	  function readBlobAsArrayBuffer(blob) {
+	    var reader = new FileReader()
+	    var promise = fileReaderReady(reader)
+	    reader.readAsArrayBuffer(blob)
+	    return promise
+	  }
+	
+	  function readBlobAsText(blob) {
+	    var reader = new FileReader()
+	    var promise = fileReaderReady(reader)
+	    reader.readAsText(blob)
+	    return promise
+	  }
+	
+	  function readArrayBufferAsText(buf) {
+	    var view = new Uint8Array(buf)
+	    var chars = new Array(view.length)
+	
+	    for (var i = 0; i < view.length; i++) {
+	      chars[i] = String.fromCharCode(view[i])
+	    }
+	    return chars.join('')
+	  }
+	
+	  function bufferClone(buf) {
+	    if (buf.slice) {
+	      return buf.slice(0)
+	    } else {
+	      var view = new Uint8Array(buf.byteLength)
+	      view.set(new Uint8Array(buf))
+	      return view.buffer
+	    }
+	  }
+	
+	  function Body() {
+	    this.bodyUsed = false
+	
+	    this._initBody = function(body) {
+	      this._bodyInit = body
+	      if (!body) {
+	        this._bodyText = ''
+	      } else if (typeof body === 'string') {
+	        this._bodyText = body
+	      } else if (support.blob && Blob.prototype.isPrototypeOf(body)) {
+	        this._bodyBlob = body
+	      } else if (support.formData && FormData.prototype.isPrototypeOf(body)) {
+	        this._bodyFormData = body
+	      } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+	        this._bodyText = body.toString()
+	      } else if (support.arrayBuffer && support.blob && isDataView(body)) {
+	        this._bodyArrayBuffer = bufferClone(body.buffer)
+	        // IE 10-11 can't handle a DataView body.
+	        this._bodyInit = new Blob([this._bodyArrayBuffer])
+	      } else if (support.arrayBuffer && (ArrayBuffer.prototype.isPrototypeOf(body) || isArrayBufferView(body))) {
+	        this._bodyArrayBuffer = bufferClone(body)
+	      } else {
+	        throw new Error('unsupported BodyInit type')
+	      }
+	
+	      if (!this.headers.get('content-type')) {
+	        if (typeof body === 'string') {
+	          this.headers.set('content-type', 'text/plain;charset=UTF-8')
+	        } else if (this._bodyBlob && this._bodyBlob.type) {
+	          this.headers.set('content-type', this._bodyBlob.type)
+	        } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+	          this.headers.set('content-type', 'application/x-www-form-urlencoded;charset=UTF-8')
+	        }
+	      }
+	    }
+	
+	    if (support.blob) {
+	      this.blob = function() {
+	        var rejected = consumed(this)
+	        if (rejected) {
+	          return rejected
+	        }
+	
+	        if (this._bodyBlob) {
+	          return Promise.resolve(this._bodyBlob)
+	        } else if (this._bodyArrayBuffer) {
+	          return Promise.resolve(new Blob([this._bodyArrayBuffer]))
+	        } else if (this._bodyFormData) {
+	          throw new Error('could not read FormData body as blob')
+	        } else {
+	          return Promise.resolve(new Blob([this._bodyText]))
+	        }
+	      }
+	
+	      this.arrayBuffer = function() {
+	        if (this._bodyArrayBuffer) {
+	          return consumed(this) || Promise.resolve(this._bodyArrayBuffer)
+	        } else {
+	          return this.blob().then(readBlobAsArrayBuffer)
+	        }
+	      }
+	    }
+	
+	    this.text = function() {
+	      var rejected = consumed(this)
+	      if (rejected) {
+	        return rejected
+	      }
+	
+	      if (this._bodyBlob) {
+	        return readBlobAsText(this._bodyBlob)
+	      } else if (this._bodyArrayBuffer) {
+	        return Promise.resolve(readArrayBufferAsText(this._bodyArrayBuffer))
+	      } else if (this._bodyFormData) {
+	        throw new Error('could not read FormData body as text')
+	      } else {
+	        return Promise.resolve(this._bodyText)
+	      }
+	    }
+	
+	    if (support.formData) {
+	      this.formData = function() {
+	        return this.text().then(decode)
+	      }
+	    }
+	
+	    this.json = function() {
+	      return this.text().then(JSON.parse)
+	    }
+	
+	    return this
+	  }
+	
+	  // HTTP methods whose capitalization should be normalized
+	  var methods = ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'POST', 'PUT']
+	
+	  function normalizeMethod(method) {
+	    var upcased = method.toUpperCase()
+	    return (methods.indexOf(upcased) > -1) ? upcased : method
+	  }
+	
+	  function Request(input, options) {
+	    options = options || {}
+	    var body = options.body
+	
+	    if (input instanceof Request) {
+	      if (input.bodyUsed) {
+	        throw new TypeError('Already read')
+	      }
+	      this.url = input.url
+	      this.credentials = input.credentials
+	      if (!options.headers) {
+	        this.headers = new Headers(input.headers)
+	      }
+	      this.method = input.method
+	      this.mode = input.mode
+	      if (!body && input._bodyInit != null) {
+	        body = input._bodyInit
+	        input.bodyUsed = true
+	      }
+	    } else {
+	      this.url = String(input)
+	    }
+	
+	    this.credentials = options.credentials || this.credentials || 'omit'
+	    if (options.headers || !this.headers) {
+	      this.headers = new Headers(options.headers)
+	    }
+	    this.method = normalizeMethod(options.method || this.method || 'GET')
+	    this.mode = options.mode || this.mode || null
+	    this.referrer = null
+	
+	    if ((this.method === 'GET' || this.method === 'HEAD') && body) {
+	      throw new TypeError('Body not allowed for GET or HEAD requests')
+	    }
+	    this._initBody(body)
+	  }
+	
+	  Request.prototype.clone = function() {
+	    return new Request(this, { body: this._bodyInit })
+	  }
+	
+	  function decode(body) {
+	    var form = new FormData()
+	    body.trim().split('&').forEach(function(bytes) {
+	      if (bytes) {
+	        var split = bytes.split('=')
+	        var name = split.shift().replace(/\+/g, ' ')
+	        var value = split.join('=').replace(/\+/g, ' ')
+	        form.append(decodeURIComponent(name), decodeURIComponent(value))
+	      }
+	    })
+	    return form
+	  }
+	
+	  function parseHeaders(rawHeaders) {
+	    var headers = new Headers()
+	    rawHeaders.split(/\r?\n/).forEach(function(line) {
+	      var parts = line.split(':')
+	      var key = parts.shift().trim()
+	      if (key) {
+	        var value = parts.join(':').trim()
+	        headers.append(key, value)
+	      }
+	    })
+	    return headers
+	  }
+	
+	  Body.call(Request.prototype)
+	
+	  function Response(bodyInit, options) {
+	    if (!options) {
+	      options = {}
+	    }
+	
+	    this.type = 'default'
+	    this.status = 'status' in options ? options.status : 200
+	    this.ok = this.status >= 200 && this.status < 300
+	    this.statusText = 'statusText' in options ? options.statusText : 'OK'
+	    this.headers = new Headers(options.headers)
+	    this.url = options.url || ''
+	    this._initBody(bodyInit)
+	  }
+	
+	  Body.call(Response.prototype)
+	
+	  Response.prototype.clone = function() {
+	    return new Response(this._bodyInit, {
+	      status: this.status,
+	      statusText: this.statusText,
+	      headers: new Headers(this.headers),
+	      url: this.url
+	    })
+	  }
+	
+	  Response.error = function() {
+	    var response = new Response(null, {status: 0, statusText: ''})
+	    response.type = 'error'
+	    return response
+	  }
+	
+	  var redirectStatuses = [301, 302, 303, 307, 308]
+	
+	  Response.redirect = function(url, status) {
+	    if (redirectStatuses.indexOf(status) === -1) {
+	      throw new RangeError('Invalid status code')
+	    }
+	
+	    return new Response(null, {status: status, headers: {location: url}})
+	  }
+	
+	  self.Headers = Headers
+	  self.Request = Request
+	  self.Response = Response
+	
+	  self.fetch = function(input, init) {
+	    return new Promise(function(resolve, reject) {
+	      var request = new Request(input, init)
+	      var xhr = new XMLHttpRequest()
+	
+	      xhr.onload = function() {
+	        var options = {
+	          status: xhr.status,
+	          statusText: xhr.statusText,
+	          headers: parseHeaders(xhr.getAllResponseHeaders() || '')
+	        }
+	        options.url = 'responseURL' in xhr ? xhr.responseURL : options.headers.get('X-Request-URL')
+	        var body = 'response' in xhr ? xhr.response : xhr.responseText
+	        resolve(new Response(body, options))
+	      }
+	
+	      xhr.onerror = function() {
+	        reject(new TypeError('Network request failed'))
+	      }
+	
+	      xhr.ontimeout = function() {
+	        reject(new TypeError('Network request failed'))
+	      }
+	
+	      xhr.open(request.method, request.url, true)
+	
+	      if (request.credentials === 'include') {
+	        xhr.withCredentials = true
+	      }
+	
+	      if ('responseType' in xhr && support.blob) {
+	        xhr.responseType = 'blob'
+	      }
+	
+	      request.headers.forEach(function(value, name) {
+	        xhr.setRequestHeader(name, value)
+	      })
+	
+	      xhr.send(typeof request._bodyInit === 'undefined' ? null : request._bodyInit)
+	    })
+	  }
+	  self.fetch.polyfill = true
+	})(typeof self !== 'undefined' ? self : this);
+
+
+/***/ },
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29340,7 +29809,7 @@
 	
 	var _reactRouterDom = __webpack_require__(189);
 	
-	var _MovieCard = __webpack_require__(278);
+	var _MovieCard = __webpack_require__(279);
 	
 	var _MovieCard2 = _interopRequireDefault(_MovieCard);
 	
@@ -29387,7 +29856,7 @@
 	exports.default = Home;
 
 /***/ },
-/* 278 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29466,7 +29935,7 @@
 	exports.default = MovieCard;
 
 /***/ },
-/* 279 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29550,7 +30019,7 @@
 	exports.default = MovieDetails;
 
 /***/ },
-/* 280 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29565,7 +30034,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _MovieCard = __webpack_require__(278);
+	var _MovieCard = __webpack_require__(279);
 	
 	var _MovieCard2 = _interopRequireDefault(_MovieCard);
 	
@@ -29613,7 +30082,7 @@
 	exports.default = Favorites;
 
 /***/ },
-/* 281 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29692,7 +30161,7 @@
 	exports.default = NavBar;
 
 /***/ },
-/* 282 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29706,6 +30175,8 @@
 	var _react = __webpack_require__(2);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	__webpack_require__(277);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29856,7 +30327,7 @@
 	exports.default = CreateUser;
 
 /***/ },
-/* 283 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29867,11 +30338,11 @@
 	
 	var _reactRedux = __webpack_require__(217);
 	
-	var _Login = __webpack_require__(284);
+	var _Login = __webpack_require__(285);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
-	var _actions = __webpack_require__(285);
+	var _actions = __webpack_require__(286);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29892,7 +30363,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Login2.default);
 
 /***/ },
-/* 284 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29906,6 +30377,8 @@
 	var _react = __webpack_require__(2);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	__webpack_require__(277);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -30036,14 +30509,18 @@
 	exports.default = Login;
 
 /***/ },
-/* 285 */
-/***/ function(module, exports) {
+/* 286 */
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.removeFavorite = exports.addFavorite = exports.fetchMovies = exports.showFavorites = exports.signOut = exports.signIn = undefined;
+	
+	__webpack_require__(277);
+	
 	var receivedMovies = function receivedMovies(movies) {
 	  return {
 	    type: 'RECEIVED_MOVIES',
@@ -30103,7 +30580,7 @@
 	};
 
 /***/ },
-/* 286 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30116,15 +30593,15 @@
 	
 	var _reactRouterRedux = __webpack_require__(254);
 	
-	var _movieReducer = __webpack_require__(287);
+	var _movieReducer = __webpack_require__(288);
 	
 	var _movieReducer2 = _interopRequireDefault(_movieReducer);
 	
-	var _userReducer = __webpack_require__(288);
+	var _userReducer = __webpack_require__(289);
 	
 	var _userReducer2 = _interopRequireDefault(_userReducer);
 	
-	var _favoritesReducer = __webpack_require__(289);
+	var _favoritesReducer = __webpack_require__(290);
 	
 	var _favoritesReducer2 = _interopRequireDefault(_favoritesReducer);
 	
@@ -30148,7 +30625,7 @@
 	exports.default = rootReducer;
 
 /***/ },
-/* 287 */
+/* 288 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30176,7 +30653,7 @@
 	exports.default = movies;
 
 /***/ },
-/* 288 */
+/* 289 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30208,7 +30685,7 @@
 	exports.default = user;
 
 /***/ },
-/* 289 */
+/* 290 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30236,16 +30713,16 @@
 	exports.default = favorites;
 
 /***/ },
-/* 290 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(291);
+	var content = __webpack_require__(292);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(305)(content, {});
+	var update = __webpack_require__(306)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -30262,16 +30739,16 @@
 	}
 
 /***/ },
-/* 291 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(292)(undefined);
+	exports = module.exports = __webpack_require__(293)(undefined);
 	// imports
-	exports.i(__webpack_require__(297), "");
 	exports.i(__webpack_require__(298), "");
-	exports.i(__webpack_require__(302), "");
+	exports.i(__webpack_require__(299), "");
 	exports.i(__webpack_require__(303), "");
 	exports.i(__webpack_require__(304), "");
+	exports.i(__webpack_require__(305), "");
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);", ""]);
 	
 	// module
@@ -30281,7 +30758,7 @@
 
 
 /***/ },
-/* 292 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {/*
@@ -30360,10 +30837,10 @@
 	  return '/*# ' + data + ' */';
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(293).Buffer))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(294).Buffer))
 
 /***/ },
-/* 293 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -30376,9 +30853,9 @@
 	
 	'use strict'
 	
-	var base64 = __webpack_require__(294)
-	var ieee754 = __webpack_require__(295)
-	var isArray = __webpack_require__(296)
+	var base64 = __webpack_require__(295)
+	var ieee754 = __webpack_require__(296)
+	var isArray = __webpack_require__(297)
 	
 	exports.Buffer = Buffer
 	exports.SlowBuffer = SlowBuffer
@@ -32159,7 +32636,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 294 */
+/* 295 */
 /***/ function(module, exports) {
 
 	'use strict'
@@ -32279,7 +32756,7 @@
 
 
 /***/ },
-/* 295 */
+/* 296 */
 /***/ function(module, exports) {
 
 	exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -32369,7 +32846,7 @@
 
 
 /***/ },
-/* 296 */
+/* 297 */
 /***/ function(module, exports) {
 
 	var toString = {}.toString;
@@ -32380,10 +32857,10 @@
 
 
 /***/ },
-/* 297 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(292)(undefined);
+	exports = module.exports = __webpack_require__(293)(undefined);
 	// imports
 	
 	
@@ -32394,42 +32871,42 @@
 
 
 /***/ },
-/* 298 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(292)(undefined);
+	exports = module.exports = __webpack_require__(293)(undefined);
 	// imports
 	
 	
 	// module
-	exports.push([module.id, " .log-title {\n   font-size: 20px;\n   color: white;\n   padding-bottom: 10px;\n }\n\n.login {\n  display: flex;\n  flex-direction: column;\n  max-width: 500px;\n  margin: 0 auto;\n  padding: 20px;\n}\n\ninput {\n  background: none;\n  border: none;\n  border-bottom: 1px solid white;\n  margin: 20px 0;\n  color: white;\n  font-size: 15px;\n  padding: 5px 30px;\n  background-repeat: no-repeat;\n  background-size: 25px;\n  background-position: left center;\n}\n\n.email {\n  background-image: url(" + __webpack_require__(299) + ");\n}\n\n.name {\n  background-image: url(" + __webpack_require__(300) + ");\n  background-size: 17px;\n}\n\n.password {\n  background-image: url(" + __webpack_require__(301) + ");\n}\n\nh6 {\n  color: #fa5a5a;\n}\n", ""]);
+	exports.push([module.id, " .log-title {\n   font-size: 20px;\n   color: white;\n   padding-bottom: 10px;\n }\n\n.login {\n  display: flex;\n  flex-direction: column;\n  max-width: 500px;\n  margin: 0 auto;\n  padding: 20px;\n}\n\ninput {\n  background: none;\n  border: none;\n  border-bottom: 1px solid white;\n  margin: 20px 0;\n  color: white;\n  font-size: 15px;\n  padding: 5px 30px;\n  background-repeat: no-repeat;\n  background-size: 25px;\n  background-position: left center;\n}\n\n.email {\n  background-image: url(" + __webpack_require__(300) + ");\n}\n\n.name {\n  background-image: url(" + __webpack_require__(301) + ");\n  background-size: 17px;\n}\n\n.password {\n  background-image: url(" + __webpack_require__(302) + ");\n}\n\nh6 {\n  color: #fa5a5a;\n}\n", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 299 */
+/* 300 */
 /***/ function(module, exports) {
 
 	module.exports = "\"data:image/svg+xml,%3C?xml version='1.0' encoding='utf-8'?%3E %3C!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E %3Csvg version='1.1' id='Layer_1' xmlns:cc='http://creativecommons.org/ns%23' xmlns:dc='http://purl.org/dc/elements/1.1/' xmlns:inkscape='http://www.inkscape.org/namespaces/inkscape' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns%23' xmlns:sodipodi='http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd' xmlns:svg='http://www.w3.org/2000/svg' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 86 56' style='enable-background:new 0 0 86 56;' xml:space='preserve'%3E %3Cstyle type='text/css'%3E .st0%7Bfill:%23FFFFFF;%7D %3C/style%3E %3Cg transform='translate(0,-952.36218)'%3E %3Cpath class='st0' d='M3,952.4c-1.6,0-3,1.4-3,3v50c0,1.6,1.4,3,3,3h80c1.6,0,3-1.4,3-3v-50c0-1.6-1.4-3-3-3H3z M4,956.4h78v1 l-39,30.4L4,957.4V956.4z M4,962.4l37.8,29.5c0.7,0.6,1.7,0.6,2.4,0L82,962.4v41.9H4V962.4z'/%3E %3C/g%3E %3C/svg%3E\""
 
 /***/ },
-/* 300 */
+/* 301 */
 /***/ function(module, exports) {
 
 	module.exports = "\"data:image/svg+xml,%3C?xml version='1.0' encoding='utf-8'?%3E %3C!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E %3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 494.9 612' style='enable-background:new 0 0 494.9 612;' xml:space='preserve'%3E %3Cstyle type='text/css'%3E .st0%7Bfill:%23FCFCFC;%7D %3C/style%3E %3Cg%3E %3Cg%3E %3Cpath class='st0' d='M249.9,326c90.6,0,123.1-90.7,131.7-165.2C392,69.1,348.7,0,249.9,0c-98.8,0-142.2,69.1-131.7,160.8 C126.7,235.3,159.3,326,249.9,326z'/%3E %3Cpath class='st0' d='M494.8,541.9c-1-28.9-4.4-57.9-9.4-86.4c-6.1-34.5-13.9-85-44-107.5c-17.4-13-39.9-17.2-59.9-25.1 c-9.7-3.8-18.4-7.6-26.5-11.9c-27.5,30.2-63.4,46-105.2,46c-41.8,0-77.7-15.8-105.2-46c-8.2,4.3-16.8,8.1-26.5,11.9 c-19.9,7.8-42.5,12.1-59.9,25.1c-30.1,22.5-37.9,73-44,107.5c-5,28.5-8.4,57.5-9.4,86.4c-0.8,22.4,10.3,25.5,29,32.3 c23.5,8.5,47.7,14.7,72,19.9c47.1,9.9,95.6,17.6,143.9,17.9c48.3-0.3,96.8-8,143.9-17.9c24.4-5.1,48.6-11.4,72-19.9 C484.6,567.4,495.6,564.3,494.8,541.9z'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E\""
 
 /***/ },
-/* 301 */
+/* 302 */
 /***/ function(module, exports) {
 
 	module.exports = "\"data:image/svg+xml,%3C?xml version='1.0' encoding='utf-8'?%3E %3C!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E %3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 28 13' style='enable-background:new 0 0 28 13;' xml:space='preserve'%3E %3Cstyle type='text/css'%3E .st0%7Bfill:%23FCFCFC;%7D %3C/style%3E %3Ctitle%3EKey%3C/title%3E %3Cdesc%3ECreated with Sketch.%3C/desc%3E %3Cg%3E %3Cg transform='translate(-2.000000, -2.000000)'%3E %3Cg transform='translate(2.000000, 9.000000)'%3E %3Cpath class='st0' d='M18-1c0-2.2,1.8-4,4-4s4,1.8,4,4s-1.8,4-4,4S18,1.2,18-1z M8,0h8.1C16.6,2.8,19,5,22,5c3.3,0,6-2.7,6-6 s-2.7-6-6-6c-3,0-5.4,2.2-5.9,5H1C0.4-2,0-1.6,0-1c0,0.6,0.4,1,1,1h1v3c0,0.5,0.4,1,1,1c0.6,0,1-0.5,1-1V0h2v5c0,0.6,0.4,1,1,1 c0.6,0,1-0.5,1-1V0z'/%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/svg%3E\""
 
 /***/ },
-/* 302 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(292)(undefined);
+	exports = module.exports = __webpack_require__(293)(undefined);
 	// imports
 	
 	
@@ -32440,10 +32917,10 @@
 
 
 /***/ },
-/* 303 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(292)(undefined);
+	exports = module.exports = __webpack_require__(293)(undefined);
 	// imports
 	
 	
@@ -32454,10 +32931,10 @@
 
 
 /***/ },
-/* 304 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(292)(undefined);
+	exports = module.exports = __webpack_require__(293)(undefined);
 	// imports
 	
 	
@@ -32468,7 +32945,7 @@
 
 
 /***/ },
-/* 305 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -32505,7 +32982,7 @@
 		singletonElement = null,
 		singletonCounter = 0,
 		styleElementsInsertedAtTop = [],
-		fixUrls = __webpack_require__(306);
+		fixUrls = __webpack_require__(307);
 	
 	module.exports = function(list, options) {
 		if(false) {
@@ -32764,7 +33241,7 @@
 
 
 /***/ },
-/* 306 */
+/* 307 */
 /***/ function(module, exports) {
 
 	
