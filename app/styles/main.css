@@ -68,6 +68,7 @@ h3 {
 }
 
 .movie-poster {
+  width: 200px;
   box-shadow: 2px 2px 2px black;
   margin-bottom: 20px;
 }
@@ -95,6 +96,8 @@ h3 {
 
 .movie-display {
   position: relative;
+  margin: 0 auto;
+  width: 200px;
 }
 
 .movie-wrapper {
@@ -102,10 +105,6 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.movie-poster {
-  width: 200px;
 }
 
 .film-reel {
