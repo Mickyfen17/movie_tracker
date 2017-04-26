@@ -7,11 +7,14 @@
 }
 
 .btn {
-    border: 0;
-    padding: 5px 15px;
-    color: #fff;
-    position: absolute;
-    right: 0;
+  position: absolute;
+  right: 0;
+  padding: 5px 15px;
+  border: 0;
+  height: 25px;
+  width: 25px;
+  background: #fa5a5a url(../images/star.svg) no-repeat 5px 2px / 20px;
+  color: #fff;
 }
 
 .rounded {
@@ -20,6 +23,10 @@
 
 .btn:active {
 	top: 4px;
+}
+
+.btn:focus {
+  background: #fa5a5a url(../images/star-active.svg) no-repeat 5px 2px / 20px;
 }
 
 .btn.red {

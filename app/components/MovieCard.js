@@ -32,9 +32,11 @@ const MovieCard = ({ title, movie_id, poster_path, release_date, vote_average, u
           alt={`movie poster of ${title}`}
         />
       </Link>
-      <button className="btn red rounded" onClick={ () => addMovieToFavorites() }>
-        FAVORITE
-        </button>
+      <button
+        className="btn red rounded"
+        onClick={ () => addMovieToFavorites() }
+      >
+      </button>
     </article>
   )
 }
