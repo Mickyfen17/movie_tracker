@@ -41,6 +41,10 @@
   font-weight: 700;
 }
 
+.submit-btn {
+  margin: 15px 0;
+}
+
 .nav-button {
   margin: 5px;
 }
