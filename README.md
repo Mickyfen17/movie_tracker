@@ -3,7 +3,7 @@
 ## Website Details
 
 [Movie Tracker](https://movie-track.herokuapp.com/)
-* **Create User & User sign in is not yet secure via OAuth. To use sign in with the below credentials.**
+* **Create User & User sign in is not yet secure via OAuth. To test use the application, sign in with the below credentials.**
 * **Default Email** - test@test.com
 * **Default Password** - password
 
