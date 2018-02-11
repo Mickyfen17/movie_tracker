@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const MovieCard = ({ title, movie_id, poster_path, release_date, vote_average, userID, overview, favorites, fetchFavorites, history, addFavorite, removeFavorite }) => {
 
   const addMovieToFavorites = () => {
-    if(!userID) { return history.push('/login') }
-    if(isInFavorites()) {
+    if (!userID) { return history.push('/login') }
+    if (isInFavorites()) {
       return removeFromFavorites(movie_id, userID)
     }
     addFavorite(movie_id, userID, title, poster_path, release_date, vote_average, overview)
@@ -28,13 +28,13 @@ const MovieCard = ({ title, movie_id, poster_path, release_date, vote_average, u
       <Link to={`/movie/${movie_id}`}>
         <img
           className="movie-poster"
-          src={`//image.tmdb.org/t/p/w150${poster_path}`}
+          src={`//image.tmdb.org/t/p/w370_and_h556_bestv2${poster_path}`}
           alt={`movie poster of ${title}`}
         />
       </Link>
       <button
         className="btn red rounded"
-        onClick={ () => addMovieToFavorites() }
+        onClick={() => addMovieToFavorites()}
       >
       </button>
     </article>
