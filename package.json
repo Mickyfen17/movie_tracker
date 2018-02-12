@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Keep track your favorite movies",
   "scripts": {
-    "build": "webpack --config ./webpack.prod.config.js",
+    "build": "webpack --config ./webpack.prod.config.js --progress",
     "dev-server": "webpack-dev-server --hot --inline --content-base --history-api-fallback",
     "start": "npm build && node server.js",
     "test": "jest",
@@ -15,6 +15,7 @@
   "dependencies": {
     "bluebird": "^3.3.4",
     "body-parser": "^1.16.0",
+    "compression": "^1.7.1",
     "express": "^4.14.0",
     "express-cors": "0.0.3",
     "history": "^4.6.1",
@@ -38,9 +39,12 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.22.0",
+    "compression-webpack-plugin": "^1.1.6",
+    "copy-webpack-plugin": "^4.4.1",
     "css-loader": "^0.27.3",
     "enzyme": "^2.8.0",
     "fetch-mock": "^5.9.4",
+    "html-webpack-plugin": "^2.30.1",
     "jest": "^19.0.2",
     "react-addons-test-utils": "^15.4.2",
     "react-hot-loader": "^1.3.1",
@@ -48,6 +52,7 @@
     "sinon": "^2.1.0",
     "style-loader": "^0.16.1",
     "svg-url-loader": "^2.0.2",
+    "uglifyjs-webpack-plugin": "^1.1.8",
     "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.9.0",
     "webpack-hot-middleware": "^2.15.0"

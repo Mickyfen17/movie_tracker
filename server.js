@@ -1,12 +1,14 @@
 const path = require('path');
 const express = require('express');
 const cors = require('express-cors');
-var bodyParser = require('body-parser')
+const compression = require('compression');
+const bodyParser = require('body-parser')
 const port = (process.env.PORT || 3000);
 const app = express();
 const users = require('./routes/users');
 
 app.use(cors());
+app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -24,16 +26,15 @@ if (process.env.NODE_ENV !== 'production') {
   }));
 }
 
-app.use(express.static('app'));
+const buildFolder = process.env.NODE_ENV !== 'production' ? 'app' : 'public';
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, './app/index.html')) });
-
-app.use('/api', users);
+app.use(express.static(`${buildFolder}`));
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, './app/index.html'))
+  res.sendFile(path.join(__dirname, `./${buildFolder}/index.html`))
 });
+
+app.use('/api', users);
 
 app.listen(port);
 
